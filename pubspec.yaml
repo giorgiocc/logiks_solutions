@@ -1,0 +1,23 @@
+name: objects_app
+description: "Simple CRUD app for the restful-api.dev test API."
+publish_to: 'none'
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.1
+
+dependencies:
+  dio: ^5.9.2
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^3.3.2
+  go_router: ^17.3.0
+  shared_preferences: ^2.5.5
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
