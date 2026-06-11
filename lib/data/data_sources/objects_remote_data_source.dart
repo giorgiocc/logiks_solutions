@@ -1,16 +1,20 @@
 import 'package:dio/dio.dart';
 
-import '../models/object_model.dart';
+import '../../domain/models/object_model.dart';
 
-class ApiService {
-  final Dio _dio = Dio(
-    BaseOptions(
-      baseUrl: 'https://api.restful-api.dev',
-      connectTimeout: const Duration(seconds: 10),
-      receiveTimeout: const Duration(seconds: 10),
-      listFormat: ListFormat.multi,
-    ),
-  );
+class ObjectsRemoteDataSource {
+  ObjectsRemoteDataSource({Dio? dio})
+      : _dio = dio ??
+            Dio(
+              BaseOptions(
+                baseUrl: 'https://api.restful-api.dev',
+                connectTimeout: const Duration(seconds: 10),
+                receiveTimeout: const Duration(seconds: 10),
+                listFormat: ListFormat.multi,
+              ),
+            );
+
+  final Dio _dio;
 
   Future<List<ObjectModel>> getObjects() async {
     final response = await _dio.get('/objects');
@@ -48,15 +52,4 @@ class ApiService {
   Future<void> deleteObject(String id) async {
     await _dio.delete('/objects/$id');
   }
-}
-
-String errorMessage(Object error) {
-  if (error is DioException) {
-    final data = error.response?.data;
-    if (data is Map && data['error'] != null) {
-      return data['error'].toString();
-    }
-    return 'Network error, please try again';
-  }
-  return 'Something went wrong';
 }

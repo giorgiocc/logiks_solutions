@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class CreatedIdsStore {
+class CreatedIdsLocalDataSource {
   static const _key = 'created_object_ids';
 
   Future<List<String>> load() async {

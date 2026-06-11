@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-import 'models/object_model.dart';
-import 'screens/details_screen.dart';
-import 'screens/edit_screen.dart';
-import 'screens/objects_screen.dart';
+import 'core/theme.dart';
+import 'domain/models/object_model.dart';
+import 'presentation/screens/details_screen.dart';
+import 'presentation/screens/edit_screen.dart';
+import 'presentation/screens/objects_screen.dart';
 
 void main() {
   runApp(
@@ -43,12 +44,7 @@ class ObjectsApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Objects',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.indigo,
-          brightness: Brightness.dark,
-        ),
-      ),
+      theme: buildAppTheme(),
       routerConfig: _router,
     );
   }
